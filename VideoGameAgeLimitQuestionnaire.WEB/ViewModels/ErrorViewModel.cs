@@ -1,6 +1,6 @@
 using System;
 
-namespace VideoGameAgeLimitQuestionnaire.WEB.Models
+namespace VideoGameAgeLimitQuestionnaire.WEB.ViewModels
 {
     public class ErrorViewModel
     {

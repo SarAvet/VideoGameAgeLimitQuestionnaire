@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using VideoGameAgeLimitQuestionnaire.WEB.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using VideoGameAgeLimitQuestionnaire.WEB.ViewModels;
 
 namespace VideoGameAgeLimitQuestionnaire.WEB.Controllers
 {
