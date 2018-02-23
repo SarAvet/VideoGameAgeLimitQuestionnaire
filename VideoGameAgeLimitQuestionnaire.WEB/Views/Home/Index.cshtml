@@ -8,7 +8,7 @@
         <p class="lead">Хочешь узнать какое возрастное ограничение твоей любимой игре согласно законодательству РФ? Достаточно ответить на пару вопросов!</p>
         <hr class="my-4">
         <p class="lead">
-            <a class="btn btn-primary btn-lg" role="button">Пройти опросник</a>
+            @Html.ActionLink("Пройти опросник", "Questionnaire", "Home", null, new { @class = "btn btn-primary btn-lg", role = "button" })
         </p>
     </div>
 </div>
