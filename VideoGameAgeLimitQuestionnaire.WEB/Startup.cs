@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +23,7 @@ namespace VideoGameAgeLimitQuestionnaire.WEB
             services.AddDbContext<QuestionnaireContext>(options => options.UseNpgsql(Configuration.GetConnectionString("QuestionnaireContext")));
         }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -46,6 +43,11 @@ namespace VideoGameAgeLimitQuestionnaire.WEB
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var context = provider.GetService<QuestionnaireContext>())
+            {
+                QuestionnaireInitializer.Seed(context);
+            }
         }
     }
 }

@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using VideoGameAgeLimitQuestionnaire.WEB.ViewModels;
 
 namespace VideoGameAgeLimitQuestionnaire.WEB.Models
 {
     /// <summary>
     /// Вопрос ДА/НЕТ
     /// </summary>
-    public class BinaryQuestion : IOrderable
+    public class BinaryQuestion 
     {
         /// <summary>
         /// Идентификатор
@@ -21,7 +23,7 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Models
         public string Text { get; set; }
 
         /// <summary>
-        /// Определяющий ответ (1 - ДА, 0 - НЕТ)
+        /// Определяющий ответ (true - ДА, false - НЕТ)
         /// </summary>
         public bool DeterminateAnswer { get; set; }
 
@@ -35,9 +37,14 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Models
         /// </summary>
         public virtual Result Result { get; set; }
 
-        public int GetOrder()
+        public int GetOrder() => Order;
+
+        [NotMapped]
+        public IEnumerable<Answer> Answers => new List<Answer>
         {
-            return Order;
-        }
+            new Answer { Text = "Да", IsDeterminateAnswer = DeterminateAnswer },
+            new Answer { Text = "Нет", IsDeterminateAnswer = !DeterminateAnswer }
+        };
+
     }
 }

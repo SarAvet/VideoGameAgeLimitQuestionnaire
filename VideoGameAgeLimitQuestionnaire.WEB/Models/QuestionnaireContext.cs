@@ -8,10 +8,8 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Models
     public class QuestionnaireContext : DbContext
     {
         public QuestionnaireContext(DbContextOptions<QuestionnaireContext> options) : base(options) { }
-
-        private DbSet<Answer> Answers { get; set; }
-        private DbSet<BinaryQuestion> BinaryQuestions { get; set; }
-        private DbSet<MultiAnswersQuestion> MultiAnswersQuestions { get; set; }
-        private DbSet<Result> Results { get; set; }
+        
+        public DbSet<BinaryQuestion> BinaryQuestions { get; set; }
+        public DbSet<Result> Results { get; set; }
     }
 }

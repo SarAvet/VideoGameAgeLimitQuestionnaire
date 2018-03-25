@@ -20,25 +20,6 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
-            modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.Answer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsDeterminateAnswer");
-
-                    b.Property<int?>("MultiAnswersQuestionId");
-
-                    b.Property<string>("Text")
-                        .HasMaxLength(250);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MultiAnswersQuestionId");
-
-                    b.ToTable("Answers");
-                });
-
             modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.BinaryQuestion", b =>
                 {
                     b.Property<int>("Id")
@@ -59,24 +40,6 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Migrations
                     b.ToTable("BinaryQuestions");
                 });
 
-            modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.MultiAnswersQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Order");
-
-                    b.Property<int?>("ResultId");
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResultId");
-
-                    b.ToTable("MultiAnswersQuestions");
-                });
-
             modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.Result", b =>
                 {
                     b.Property<int>("Id")
@@ -90,24 +53,10 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Migrations
                     b.ToTable("Results");
                 });
 
-            modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.Answer", b =>
-                {
-                    b.HasOne("VideoGameAgeLimitQuestionnaire.WEB.Models.MultiAnswersQuestion", "MultiAnswersQuestion")
-                        .WithMany("Answers")
-                        .HasForeignKey("MultiAnswersQuestionId");
-                });
-
             modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.BinaryQuestion", b =>
                 {
                     b.HasOne("VideoGameAgeLimitQuestionnaire.WEB.Models.Result", "Result")
-                        .WithMany()
-                        .HasForeignKey("ResultId");
-                });
-
-            modelBuilder.Entity("VideoGameAgeLimitQuestionnaire.WEB.Models.MultiAnswersQuestion", b =>
-                {
-                    b.HasOne("VideoGameAgeLimitQuestionnaire.WEB.Models.Result", "Result")
-                        .WithMany()
+                        .WithMany("BinaryQuestions")
                         .HasForeignKey("ResultId");
                 });
 #pragma warning restore 612, 618

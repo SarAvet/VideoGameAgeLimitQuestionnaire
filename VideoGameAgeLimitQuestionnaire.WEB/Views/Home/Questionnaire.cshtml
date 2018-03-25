@@ -2,41 +2,42 @@
     ViewData["Title"] = "Опросник";
 }
 
+@using VideoGameAgeLimitQuestionnaire.WEB.ViewModels
+@model QuestionnaireViewModel
+
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">#1<span class="display-3"> Вопрос </span></h1>
+        <h1>#@Model.Order<span class="display-4"> @Model.Text </span></h1>
         <hr class="my-4">
 
-        @{
-            using (Html.BeginForm("Questionnaire", "Home", null, FormMethod.Post))
-            {
-                <div class="row">
-                    <div class="col ml-4">
-                        <div class="form-group">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                Да
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                Нет
-                            </label>
-                        </div>
-                    </div>
+        @using (Html.BeginForm("Questionnaire", "Home", null, FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.Order)
+            <div class="row">
+                <div class="col ml-4">
+
+                    @{
+                        foreach (var answer in Model.Answers)
+                        {
+                            <div class="form-group">
+                                <label class="form-check-label">
+                                    @Html.RadioButton("SelectedAnswers", answer.IsDeterminateAnswer, "answer")
+                                    @Html.Raw(answer.Text)
+                                </label>
+                            </div>
+                        }
+                    }
                 </div>
+            </div>
 
-                <hr class="my-3" />
+            <hr class="my-3" />
 
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-light" role="btn" name="scrollBtn" value="prev">Назад</button>
-                        <button class="btn btn-primary float-right" role="btn" name="scrollBtn" value="next">Далее</button>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-light" role="btn" name="scrollBtn" value="prev">Назад</button>
+                    <button class="btn btn-primary float-right" role="btn" name="scrollBtn" value="next">Далее</button>
                 </div>
-            }
-
+            </div>
         }
     </div>
 </div>

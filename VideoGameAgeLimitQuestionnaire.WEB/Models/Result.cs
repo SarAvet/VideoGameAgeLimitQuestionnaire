@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VideoGameAgeLimitQuestionnaire.WEB.Models
 {
@@ -18,5 +19,7 @@ namespace VideoGameAgeLimitQuestionnaire.WEB.Models
         /// </summary>
         [StringLength(500)]
         public string Text { get; set; }
+
+        public virtual IEnumerable<BinaryQuestion> BinaryQuestions { get; set; }
     }
 }

@@ -1,0 +1,12 @@
+﻿@using VideoGameAgeLimitQuestionnaire.WEB.Models
+@model Result
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Готово! </h1>
+        <p class="lead">@Model.Text</p>
+        @Html.ActionLink("Пройти повторно", "Questionnaire", "Home", null, new { @class = "btn btn-primary btn-lg", role = "button" })
+    </div>
+</div>
+
+
